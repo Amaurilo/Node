@@ -20,4 +20,20 @@ router.get('/',(req, res, next) => {
     }); 
     
 });
+
+router.get('/:director', (req, res, next) => {
+    const director = req.params.director;
+    movieDetails.find({
+        director: director
+    })
+    .exec()
+    .then(doc1 => {
+        res.status(200).json(doc1);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({error: err});
+    
+    }); 
+});
 module.exports = router;
