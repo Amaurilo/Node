@@ -15,10 +15,6 @@ var httpsOptions = {
     key: fs.readFileSync('./ssl/node-key.pem'),
     cert: fs.readFileSync('./ssl/node-cert.pem')
 };
- 
-// sslapp.get('/', function(req , res){
-//     res.send('got it ssl');
-// });
 
 http.createServer(app).listen(port,function(){
     console.log('Listening on port 80');
