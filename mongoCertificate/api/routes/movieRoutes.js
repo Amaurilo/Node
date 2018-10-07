@@ -76,6 +76,25 @@ router.get('/:director', (req, res, next) => {
     }); 
 });
 
+router.get('/:rated/:wins', (req, res, next) => {
+    const rated = req.params.rated;
+    const wins = req.params.wins;
+    movieDetails.find({
+        rated: rated,
+        "awards.wins": {$gte: parseInt(wins)}
+    })
+    .exec()
+    .then(doc1 => {
+        res.status(200).json(doc1);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({error: err});
+    
+    }); 
+});
+
+
 router.put('/', (req, res, next) => {
     const putBody = req.body;
 
